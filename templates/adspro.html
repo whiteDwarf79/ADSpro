@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to ADsPro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1>ADsPro</h1>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('userguide') }}">User Manual</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <div id="waveformContainer">
+        <div class="instruction">
+            <p>Press Tab key for Play and Pause</p>
+        </div>
+        <div id="waveform">
+            <!-- Dynamically waveforms will appear here -->
+        </div>
+        <audio id="audioPlayer" controls></audio>
+    </div>
+    
+    
+    <div id="content-container">
+        <button class="info-btn" onclick="toggleContent()">ℹ️</button>
+        <div class="content" id="content" style="display: none;">
+            <h4>
+                <span class="DodgerBlue">Blue indicates prominent words.</span><br>
+                <span class="red">Red indicates non-prominent words.</span><br>
+            </h4>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function toggleContent() {
+                var content = document.getElementById("content");
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            }
+    
+            var infoButton = document.querySelector('.info-btn');
+            if (infoButton) {
+                infoButton.addEventListener('click', toggleContent);
+            }
+        });
+    </script>
+    <div id="progressBar">
+        <div id="progress"></div>
+    </div>
+    <div id="annotation-box" class="annotation-box">
+        <div id="intervalDataContainer"></div>
+    </div>
+    
+    <input type="file" id="audioFileInput" accept=".wav">
+    <audio id="audioPlayer" controls></audio>
+    
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <script src="{{ url_for('static', filename='js/waveforms.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tab.js') }}"></script>
+    
+    <div class="btn-1">
+        <ul id="button-container" style="display: flex; gap: 10px;">
+            <li id="audio-upload-btn" class="upload-btn">
+                <label for="audioFileInput">Upload Audio</label>
+                <input type="file" id="audioFileInput" style="display: none;">
+            </li>
+            <li id="textgrid-upload-btn" class="upload-btn">
+                <label for="textGridFileInput">Upload TextGrid</label>
+                <input type="file" id="textGridFileInput" style="display: none;">
+            </li>
+
+<button class="sample-btn" onclick="toggleSample()">Sample Textgrid</button>
+
+
+<div id="sample-container" style="display: none;">
+    <div id="sample-overlay">
+        <div id="sample-message">hide it!</div>
+        <img id="sample-image" src="{{ url_for('static', filename='SampleTextGridFile.png') }}" alt="Sample Image">
+    </div>
+</div>
+
+
+
+
+            <li id="checkButton" class="upload-btn">
+                <label for="checkButtonInput">Check prominence here !</label>
+                <input type="button" id="checkButtonInput" style="display: none;">
+            </li>
+        </ul>
+    </div>
+    <li id="checkButton" class="upload-btn">
+    <button id="popupBtn">Check Sentence Prominence!</button>
+</li>
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <div class="popup-text-container">
+        <div class="popup-text">
+            <p>If Number of total word highlighted in <span class="blue">blue</span>  color<br>>= half of total number of words<br><div class="horizontal-line"></div> Then sentence is <span class="blue">prominent</span> <br> Otherwise<br> Then sentence is <span class="red">non prominent</span> <br> </p>
+        </div>
+    </div>
+    <div class="popup-text-container">
+        <div class="popup-image">
+            <img src="{{ url_for('static', filename='SentenceProminenceTT.png') }}" alt="Image Description">
+        </div>
+    </div>
+    </div>
+</div>
+
+
+    </header>
+
+    
+
+    <script>document.addEventListener('DOMContentLoaded', (event) => {
+        const popupBtn = document.getElementById('popupBtn');
+        const popup = document.getElementById('popup');
+    
+        popupBtn.addEventListener('click', () => {
+            popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+        });
+    
+     
+        window.addEventListener('click', (event) => {
+            if (event.target !== popupBtn && !popup.contains(event.target)) {
+                popup.style.display = 'none';
+            }
+        });
+    });
+    </script>
+    
+    <script src="{{ url_for('static', filename='js/TextGrid.js') }}"></script>
+
+   
+
+    <script>
+        const audio = document.getElementById('audioPlayer');
+        const progressBar = document.getElementById('progress');
+
+        audio.addEventListener('timeupdate', updateProgressBar);
+
+        function updateProgressBar() {
+            const percentage = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = `${percentage}%`;
+        }
+    </script>
+    <script>
+
+function toggleSample() {
+    var sampleContainer = document.getElementById("sample-container");
+    if (sampleContainer.style.display === "block") {
+        sampleContainer.style.display = "none";
+    } else {
+        sampleContainer.style.display = "block";
+    }
+}
+
+document.getElementById("sample-container").addEventListener("click", function(event) {
+    var overlay = document.getElementById("sample-overlay");
+    if (event.target === overlay || event.target.parentNode === overlay) {
+        this.style.display = "none";
+    }
+});
+
+    </script>
+
+</body>
+</html>

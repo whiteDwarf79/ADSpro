@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to ADsPro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        .highlight {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1>ADsPro</h1>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('userguide') }}">User Manual</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <section id="home" class="hero">
+    <div class="container">
+        <h2>Uploading Files:</h2>
+        <p>
+            - Click on the Get Started button<br>
+            - The ADsPro interface will appear<br>
+            - Upload an Audio(take audio containing only one sentence at a time for better accuracy) <br>
+            - Use the <strong class="highlight">"Tab"</strong> key to play/pause the audio during playback.<br>
+            - Upload a TextGrid file(single tier praat generated .textgrid extension files are currently supported) see <strong class="highlight">"help!"</strong>  button for more details<br>
+            - use their respective buttons for upload.<br>
+        </p>
+
+        <h2>Analyzing Audio:</h2>
+        <p>
+            - Once both audio and TextGrid files are uploaded, you'll see the waveform visualization of the canvas display.<br>
+            - Below the canvas the word blocks(interval) will appear according to the uploaded TextGrid file of praat.
+        </p>
+
+        <h2>Checking Prominence:</h2>
+        <p>
+            - Select the block of word(interval) and <strong class="highlight">Single click</strong> the "Check prominence here!" button to analyze the audio segments and predict word prominence.<br>
+            - Prominent words will be highlighted in red, while non-prominent words will be displayed in grey.
+        </p>
+
+        <h2>Additional Features:</h2>
+        <p>
+            
+            - The application is designed to be responsive, allowing access from various devices.
+        </p>
+    </div>
+    </section>
+    
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to ADsPro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1>ADsPro</h1>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('userguide') }}">User Manual</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <section id="home" class="hero">
+    <div class="container">
+        <h2>Welcome to ADsPro!</h2>
+        <p>ADsPro is a simple tool to help you analyze audio files and find the important words in them. It's easy to use and helps you understand the details of any audio.</p>
+    
+        <h3>Our Mission</h3>
+        <p>We want to make it easy for everyone, from researchers to hobbyists, to work with audio data.</p>
+    
+        <h3>What We Offer</h3>
+        <ul>
+            <li><strong>Audio Analysis:</strong> Quickly upload audio files and learn about their features.</li>
+            <li><strong>TextGrid Integration:</strong> Use TextGrid files to see and study parts of the audio.</li>
+            <li><strong>Prominence Prediction:</strong> Find out which words are most important in your audio.</li>
+        </ul>
+    
+        <h3>Why Choose ADsPro?</h3>
+        <ul>
+            <li><strong>Accuracy:</strong> Get reliable audio analysis results.</li>
+            <li><strong>Ease of Use:</strong> Our platform is designed for everyone, no special skills needed.</li>
+            <li><strong>Versatility:</strong> Great for research, learning languages, and more.</li>
+        </ul>
+
+    </div>
+    </section>
+    
+
+</body>
+</html>
