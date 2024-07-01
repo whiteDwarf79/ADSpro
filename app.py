@@ -127,7 +127,7 @@ def process_segment():
 
         result = predict_audio_prominence(segment_path, model_path='model/model.pkl')
 
-        # Check if the 'prominent' property exists in the result
+        # Check if the 'prominent' property exists or not in the result
         if 'prominent' in result:
             prominent_value = result['prominent']
         else:
