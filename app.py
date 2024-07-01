@@ -96,7 +96,7 @@ def predict_audio_prominence(audio_file, model_path='model.pkl'):
         return jsonify({'success': False, 'error': 'Empty audio segment'})
 
     predicted_prominence = model.predict(features_df)
-    # Convert numpy int64 to native Python int
+    
     predicted_prominence = predicted_prominence.item()
 
     # Print the prediction result
